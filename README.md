@@ -27,7 +27,7 @@ An interactive AI-powered Python application that evaluates password strength an
 ## Demo
 
 ```bash
-nter a password for evaluation (or type 'generate' to get a strong password):
+Enter a password for evaluation (or type 'generate' to get a strong password):
 Your password: pickle1sDB3ST#1P
 user_proxy (to assistant):
 
