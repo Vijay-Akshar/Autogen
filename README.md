@@ -1,95 +1,128 @@
 # Autogen
 
-An interactive AI-powered Python application that evaluates password strength and suggests improvements or generates secure passwords. Built with [AutoGen](https://github.com/microsoft/autogen) and powered by GPT-4.
+A terminal-based Python tool that evaluates the strength of passwords and helps users create more secure ones. Built using Microsoft’s AutoGen framework and powered by GPT-4, this assistant gives practical feedback on password security and can generate strong alternatives for safer usage.
 
----
+You can input your own passwords for analysis, or simply type `generate` to get a highly secure, randomly created password.
 
-## Features
-
--  Evaluate password strength with detailed feedback
--  Generate strong, secure passwords
--  GPT-4 backed conversation agent using `autogen`
--  Optional code execution (with or without Docker)
--  Clean command-line interface
+### Features
+- Password Analysis: Evaluates strength based on length, character diversity, and patterns.
+- Secure Suggestions: Offers tips to enhance password security.
+- Password Generation: Instantly creates strong, random passwords.
+- GPT-4 Powered: Uses natural language understanding for meaningful feedback.
+- AutoGen Agent Integration: Structured AI interaction via AutoGen’s assistant and user proxy agents.
 
 ---
 
 ## How It Works
 
-- You provide a password via terminal input
-- The assistant evaluates the strength and suggests improvements
-- If you type `generate`, it creates a secure password for you
-- Uses GPT-4 and OpenAI API to power the conversation
-- Continues until you type `exit` to exit
+### 1. `app.py`
+This file drives the interaction between the user and the assistant.
+- Accepts input from the user for password evaluation.
+- Calls the assistant to respond with security advice.
+- Can execute Python code blocks returned by the assistant (like password generation).
+- Continues the loop until the user types `exit` to exit.
 
 ---
 
-## Demo
+## Installation & Setup
 
+### 1. Clone the Repository
+```sh
+git clone https://github.com/yourusername/password-strength-agent.git
+cd password-strength-agent
+```
+
+### 2. Create and Activate Environment
+Using Conda:
+```sh
+conda create -n autogen python=3.10 -y
+conda activate autogen
+```
+
+### 3. Install Dependencies
+```sh
+pip install ag2[openai]
+```
+
+### 4. Configure OpenAI API Key
+In `app.py`, update the `api_key` value:
+```python
+config_list = {
+    'model': 'gpt-4',
+    'api_key': 'sk-your-key-here'
+}
+```
+
+### 5. Run the App
+```sh
+python app.py
+```
+
+---
+
+## Usage
+- When prompted, enter a password to analyze.
+- Type `generate` to get a strong password.
+- After each interaction, you'll be asked whether you want to continue.
+
+Example:
 ```bash
 Enter a password for evaluation (or type 'generate' to get a strong password):
-Your password: pickle1sDB3ST#1P
+Your password: P1ckL31sC001!
 user_proxy (to assistant):
 
-Analyze the password: 'pickle1sDB3ST#1P' and suggest how to make it stronger.
+Analyze the password: 'P1ckL31sC001!' and suggest how to make it stronger.
 
 --------------------------------------------------------------------------------
 assistant (to user_proxy):
 
-The password 'pickle1sDB3ST#1P' is already quite strong. It includes uppercase letters, lowercase letters, numbers, and special characters, and it is longer than 12 characters. These are all good practices for creating a strong password.
+The password 'P1ckL31sC001!' is already quite strong. It includes uppercase and lowercase letters, numbers, and special characters, which are all good practices for creating a strong password. It also has a length of 13 characters, which is above the commonly recommended minimum of 8 characters.
 
-However, if you want to make it even stronger, you could consider the following:
+However, there are a few ways to make it even stronger:
 
-1. Increase the length: The longer the password, the harder it is to crack. You could add more characters to your password.
+1. Increase the length: The longer the password, the harder it is to crack. You could add more characters to this password to make it stronger.
 
-2. Use more special characters: You've used a number sign (#), but you could also include other special characters like @, $, %, &, *, etc.
+2. Avoid common substitutions: Replacing 'e' with '3' and 'o' with '0' are common substitutions. These can be guessed by advanced cracking tools. Try to avoid these common substitutions.
 
-3. Avoid common words or phrases: Even though 'pickle' and 'best' are not very common, they are still English words that could potentially be guessed by a sophisticated attack. Using random combinations of letters and numbers can make your password stronger.
+3. Avoid dictionary words: Even though 'P1ckL31sC001!' doesn't look like it contains any dictionary words, it's actually a leetspeak for 'PickleIsCool!'. Advanced cracking tools can guess passwords that contain dictionary words, even if they're disguised with character substitutions. Try to avoid using dictionary words in your password.
 
-4. Avoid sequential numbers: '1' and '3' are not sequential, but it's still a good idea to avoid sequences or repeated numbers.
+4. Add more special characters or use less common ones: The password only contains one type of special character '!'. Adding more types or using less common ones can make the password stronger.
 
-Here's a Python code that generates a strong password based on these principles:
+Here's an example of a stronger password based on 'P1ckL31sC001!': 'P1ckL31sC001!@#%&*'
 
-```python
-import string
-import random
-
-def generate_password(length):
-    all_characters = string.ascii_letters + string.digits + string.punctuation
-    password = ''.join(random.choice(all_characters) for i in range(length))
-    return password
-
-print(generate_password(20))
-```.
-
-This code will generate a 20-character password that includes a mix of uppercase and lowercase letters, numbers, and special characters. The characters are chosen randomly, so it's very unlikely that the password will include common words or phrases.
+Please note that the best way to create a strong and secure password is to use a random combination of characters, or a password manager that can generate and store complex passwords for you.
 
 --------------------------------------------------------------------------------
-Replying as user_proxy. Provide feedback to assistant. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: generate
+Replying as user_proxy. Provide feedback to assistant. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: Add some new characters and shuffle it around
 user_proxy (to assistant):
 
-generate
+Add some new characters and shuffle it around
 
 --------------------------------------------------------------------------------
 assistant (to user_proxy):
 
-Sure, here is the Python code to generate a strong password. This code will generate a 20-character password that includes a mix of uppercase and lowercase letters, numbers, and special characters. The characters are chosen randomly, so it's very unlikely that the password will include common words or phrases.       
+Sure, we can add some new characters and shuffle the existing ones around. Here's a Python script that does just that. It adds a few more special characters and numbers to the password, then shuffles the characters around to create a new password.
 
 ```python
-# filename: generate_password.py
+# filename: password_shuffle.py
 
-import string
 import random
 
-def generate_password(length):
-    all_characters = string.ascii_letters + string.digits + string.punctuation
-    password = ''.join(random.choice(all_characters) for i in range(length))
-    return password
+# Original password
+password = 'P1ckL31sC001!'
 
-print(generate_password(20))
+# Add some new characters
+password += '@#%&*'
+
+# Convert the password to a list of characters, shuffle it, then convert it back to a string
+password = list(password)
+random.shuffle(password)
+password = ''.join(password)
+
+print(password)
 ```.
 
-You can save this code in a file named `generate_password.py` and run it to generate a new password.
+You can run this script to generate a new, stronger password. The new password will be different every time you run the script, thanks to the random shuffle.  
 
 --------------------------------------------------------------------------------
 Replying as user_proxy. Provide feedback to assistant. Press enter to skip and use auto-reply, or type 'exit' to end the conversation:
@@ -103,22 +136,22 @@ user_proxy (to assistant):
 
 exitcode: 0 (execution succeeded)
 Code output:
-RVrd>.T:(78HnPs8g_Aw
+11*00Cc&1@!s#kL3P%
 
 
 --------------------------------------------------------------------------------
 assistant (to user_proxy):
 
-Great! The code has successfully generated a strong password: 'RVrd>.T:(78HnPs8g_Aw'. This password is 20 characters long and includes a mix of uppercase and lowercase letters, numbers, and special characters. The characters are chosen randomly, so it's very unlikely that the password will include common words or phrases. This makes it a very strong password.
+Great! The new password '11*00Cc&1@!s#kL3P%' is stronger than the original one. It has a length of 18 characters, includes more special characters, and the characters have been shuffled around. This makes it harder for an attacker to guess the password.
 
-Remember to store your password in a secure place and do not share it with anyone.
+Remember to store your password in a secure place, and consider using a password manager to manage your passwords.
 
 TERMINATE
 
 --------------------------------------------------------------------------------
 Replying as user_proxy. Provide feedback to assistant. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: exit
 
->>>>>>>> TERMINATING RUN (8debe3ef-c27a-4382-b2d2-80499c2b93c6): User requested to end the conversation
+>>>>>>>> TERMINATING RUN (994d4b85-bdf5-4097-af1a-b82902f7ebf6): User requested to end the conversation
 Do you want to enter another password? (yes/no): no
 Session terminated.
 ```
@@ -126,76 +159,21 @@ Session terminated.
 ---
 
 ## Getting Started
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/password-strength-agent.git
-cd password-strength-agent
-```
-
-### 2. Set Up the Environment
-Create and activate a Conda environment (or use `venv`):
-```bash
-conda create -n autogen python=3.10 -y
-conda activate autogen
-```
-
-### 3. Install Dependencies
-```bash
-pip install ag2[openai]
-```
-
-### 4. Add Your OpenAI API Key
-In `app.py`, replace the placeholder in `config_list` with your actual key:
-```python
-'api_key': 'sk-...'
-```
-
-### 5. Run the App
-```bash
-python app.py
-```
+### Prerequisites
+Ensure the following are installed:
+- Python 3.10+
+- OpenAI-compatible API key
+- Optional: Docker (disabled by default in the config)
 
 ---
 
-## Configuration
-
-To disable Docker-based code execution (recommended if Docker isn't installed), ensure:
-```python
-code_execution_config={"use_docker": False, "work_dir": "web"}
-```
-
-Or, set this environment variable:
-```bash
-export AUTOGEN_USE_DOCKER=False  # for Linux/macOS
-$env:AUTOGEN_USE_DOCKER = "False"  # for Windows PowerShell
-```
-
----
-
-## Security Tips
-
-- Never log or share real passwords.
-- Use this tool only for educational or personal learning purposes.
-- Use a password manager for storing passwords securely.
-
----
-
-## Built With
-
-- [Python](https://www.python.org/)
-- [AutoGen](https://github.com/microsoft/autogen)
-- [OpenAI GPT-4](https://platform.openai.com/docs/guides/gpt)
+## Contributing
+Feel free to fork the project, submit issues, or open pull requests to improve functionality and extend features.
 
 ---
 
 ## License
+This project is open-source and licensed under the MIT License.
 
-MIT License. See `LICENSE` for details.
+(For educational and personal use only)
 
----
-
-## Credits
-
-Developed by Akshar — Computer Science student.  
-Let's build safer systems, one password at a time.
