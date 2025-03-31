@@ -49,7 +49,7 @@ In `app.py`, update the `api_key` value:
 ```python
 config_list = {
     'model': 'gpt-4',
-    'api_key': 'sk-your-key-here'
+    'api_key': 'Insert your API key here'
 }
 ```
 
